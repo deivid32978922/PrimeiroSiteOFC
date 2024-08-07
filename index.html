@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Login</title>
+    <style>
+        body {
+            border-color: black;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 23%, rgba(0,212,255,1) 50%, rgba(14,111,44,1) 73%);
+        }
+        .login-container {
+            border-color: crimson;
+            background-color: rgb(9, 75, 173);
+            padding: 20px;
+            border-radius: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+        .login-container input {
+            display: block;
+            width: 85%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 80px;
+            border-color: rgb(33, 25, 155);
+        }
+        .login-container button {
+            background-color: #18e9e9;
+            color: rgb(0, 0, 0);
+            transform: translate(115%, 20%);
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #3fe40d;
+        }
+        .error-message {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2 style="transform: translate(25%, -50%); color: white;">Login</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Digite seu email" required>
+            <input type="password" id="password" placeholder="Digite sua senha" required>
+            <button type="submit">Entrar</button>
+            <p class="error-message" id="error-message-email">Email não autorizado.</p>
+            <p class="error-message" id="error-message-password">Senha incorreta.</p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const authorizedUsers = {
+                "silvadavid3297@gmail.com": "deivid123",
+                "sabiosapo11@gmail.com": "deivid456",
+                "deivid.lima1102@gmail.com": "deivid789"
+            };
+            const emailInput = document.getElementById('email').value;
+            const passwordInput = document.getElementById('password').value;
+            const errorMessageEmail = document.getElementById('error-message-email');
+            const errorMessagePassword = document.getElementById('error-message-password');
+            
+            errorMessageEmail.style.display = 'none';
+            errorMessagePassword.style.display = 'none';
+            
+            if (!authorizedUsers[emailInput]) {
+                errorMessageEmail.style.display = 'block';
+            } else if (authorizedUsers[emailInput] !== passwordInput) {
+                errorMessagePassword.style.display = 'block';
+            } else {
+                // Redirecionar para a próxima etapa
+                window.location.href = "corinthians.html";
+            }
+        });
+    </script>
+</body>
+</html>
